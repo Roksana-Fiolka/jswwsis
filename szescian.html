@@ -1,0 +1,29 @@
+<!doctype=html>
+<!html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="Author" content="Roksana Fiołka">
+<title>Pole i obwód sześcianu</title>
+<script type="text/javascript">
+</head>
+<body>
+<br>Wprowadź rozmiar boku sześcianu w metrach: <br/>
+<input id="sideSize" type="number" />
+<input type="button" value="Calculate it" onclick="calculate()"/>
+<div>Pole: <span id="surface">0</span> m2</div>
+<div>Obwód: <span id="volume">0</span> m3</div>
+
+<script>
+function calculate()
+{
+	var textBox = document.getElementById("sideSize");
+  	var side = textBox.value;
+  	var surface = side*side*6;
+  	document.getElementById("surface").innerHTML = surface;
+
+  	var volume = side*side*side;
+  	document.getElementById("volume").innerHTML = volume;
+}
+</script>
+</body>
+</html>

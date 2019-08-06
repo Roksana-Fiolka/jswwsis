@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
   <meta charset="utf-8">
+  <meta name="Author" content="Roksana Fiołka">
   <meta name="viewport" content="width=device-width">
   <title> Password complexity</title>
 	<style>
@@ -22,47 +23,61 @@ progress {
 </style>
 </head>
 <body>
-  <div class="passwordWrapper">
-    <label for="passwordField">
-      Twoje nowe hasło
-    </label>
-    <input type="password" id="passwordField" placeholder="Wpisz hasło">
-    <progress id="passwordComplexity" value="0"></progress>
-  </div>
-	<script type="text/javascript">
-var calculateComplexity = function (password) {
-  var complexity = 0;
+  Insert password: <br/>
+  <input id="pass" type="password" oninput="calculate()"/>
+  <div>Strength: <span id="strength">0</span> %</div>
 
-  var regExps = [
-    /[a-z]/,
-    /[A-Z]/,
-    /[0-9]/,
-    /.{8}/,
-    /.{16}/,
-    /[!-//:-@[-`{-ÿ]/
-  ];
 
-  regExps.forEach(function (regexp) {
-    if (regexp.test(password)) {
-      complexity++;
-    }
-  });
+  <script>
+  function calculate()
+  {
+  	var score = 0;
+  	var textBox = document.getElementById("pass");
+      var pass = textBox.value;
 
-  return {
-    value: complexity,
-    max: regExps.length
-  };
-};
+      var hasLetter = false;
+      var hasNumber = false;
+      var hasCapital = false;
 
-var checkPasswordStregth = function (password) {
-  var progress = document.querySelector('#passwordComplexity'),
-      complexity = calculateComplexity(this.value);
+      for (var i = 0; i < pass.length; i++)
+      {
+      	var char = pass.charAt(i);
 
-  progress.value = complexity.value;
-  progress.max = complexity.max;
-};
+          if ('0123456789'.includes(char))
+          {
+          	hasNumber = true;
+          }
+      	else if (char == char.toUpperCase())
+          {
+          	hasCapital = true;
+          }
+    		else if (char == char.toLowerCase())
+          {
+          	hasLetter = true;
+          }
+  	}
 
-var input = document.querySelector('#passwordField');
-input.addEventListener('keyup', checkPasswordStregth);
-</script>
+      if (hasNumber)
+      {
+      	score = score + 25;
+      }
+
+      if (hasLetter)
+      {
+      	score = score + 25;
+      }
+
+      if (hasCapital)
+      {
+      	score = score + 25;
+      }
+
+      if (pass.length > 8)
+      {
+      	score = score + 25;
+      }
+
+    	document.getElementById("strength").innerHTML = score;
+  }
+  </script>
 </html>

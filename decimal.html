@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="utf-8">
+  <title>Decimal number to binary</title>
+</head>
+<body>
+  <input type="text" id="txtDec" />
+   <input type="button" value="Convert" onclick="document.getElementById('spBin').innerHTML=ConvertToBinary(document.getElementById('txtDec').value);" />
+   <span id="spBin"></span>
+  <script type="text/javascript">
+          function ConvertToBinary(dec) {
+              var bits = [];
+              var dividend = dec;
+              var remainder = 0;
+              while (dividend >= 2) {
+                  remainder = dividend % 2;
+                  bits.push(remainder);
+                  dividend = (dividend - remainder) / 2;
+              }
+              bits.push(dividend);
+              bits.reverse();
+              return bits.join("");
+          }
+      </script>
+
+</body>
+</html>

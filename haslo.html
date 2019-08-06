@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Password complexity</title>
+	<style>
+	.passwordWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+}
+
+.passwordWrapper input {
+  flex-basis: 100%;
+  margin: 10px 0;
+}
+
+progress {
+  flex-basis: 100%;
+}
+</style>
+</head>
+<body>
+  <div class="passwordWrapper">
+    <label for="passwordField">
+      Twoje nowe hasło
+    </label>
+    <input type="password" id="passwordField" placeholder="Wpisz hasło">
+    <progress id="passwordComplexity" value="0"></progress>
+  </div>
+	<script type="text/javascript">
+var calculateComplexity = function (password) {
+  var complexity = 0;
+
+  var regExps = [
+    /[a-z]/,
+    /[A-Z]/,
+    /[0-9]/,
+    /.{8}/,
+    /.{16}/,
+    /[!-//:-@[-`{-ÿ]/
+  ];
+
+  regExps.forEach(function (regexp) {
+    if (regexp.test(password)) {
+      complexity++;
+    }
+  });
+
+  return {
+    value: complexity,
+    max: regExps.length
+  };
+};
+
+var checkPasswordStregth = function (password) {
+  var progress = document.querySelector('#passwordComplexity'),
+      complexity = calculateComplexity(this.value);
+
+  progress.value = complexity.value;
+  progress.max = complexity.max;
+};
+
+var input = document.querySelector('#passwordField');
+input.addEventListener('keyup', checkPasswordStregth);
+</script>
+</html>

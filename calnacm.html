@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<title>Zamiana cali na cm</title>
+<body>
+
+<h2>Zamiana cali na cm</h2>
+
+<p>
+  <label>Cale:</label>
+  <input id="inputInches" type="number" placeholder="Cale" oninput="LengthConverter(this.value)" onchange="LengthConverter(this.value)">
+</p>
+<p>cm: <span id="outputcm"></span></p>
+
+<script>
+function LengthConverter(valNum) {
+  document.getElementById("outputcm").innerHTML=valNum/0.39370;
+}
+</script>
+</body>
+</html>

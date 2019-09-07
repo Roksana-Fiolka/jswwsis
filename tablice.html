@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <style media="screen">
+      table{
+        border-collapse:collapse;
+      }
+      td,th{
+        border:1px solid black;
+        padding: 5px;
+        text-align:center;
+      }
+    </style>
+
+    <script type="text/javascript">
+
+      var array = [[6,7,8,15],
+                  [4,5,4,4],
+                  [2,2,1,4],
+                  [5,1,2,5]];
+
+      for(var i=0 ; i<4 ; i++){
+        var wierszSum = array[i][0];
+        var wierszMultiplication = array[i][0];
+        var wierszDiv = array[i][0];
+        for(var j=1 ; j<4 ; j++){
+            wierszSum += array[i][j];
+            wierszMultiplication *= array[i][j];
+            wierszDiv /= array[i][j];
+        }
+        console.log(i+1 + " wiersz sum is "+ wierszSum);
+        console.log(i+1 + " wiersz multi is "+ wierszMultiplication);
+        console.log(i+1 + " wiersz div is "+ wierszDiv);
+      }
+
+      console.log("--------------------------------------------");
+
+      for(var i=0 ; i<4 ; i++){
+        var wierszSum = array[0][i];
+        var wierszMultiplication = array[0][i];
+        var wierszDiv = array[0][i];
+
+        for(var j=1 ; j<4 ; j++){
+            wierszSum += array[j][i];
+            wierszMultiplication *= array[j][i];
+            wierszDiv /= array[j][i];
+        }
+        console.log(i+1 + " wiersz count is "+ wierszSum);
+        console.log(i+1 + " wiersz multi is "+ wierszMultiplication);
+        console.log(i+1 + " wiersz div is "+ wierszDiv);
+      }
+
+      window.onload = () =>{
+        document.getEleme
+        var body = document.getElementsByTagName("BODY")[0];
+        var bodyInner = body.innerHTML;
+
+
+        bodyInner += "<table text-align:center;'>";
+        bodyInner += "<tr>";
+        bodyInner += "<th colspan='4'>Liczby</th>";
+        bodyInner += "<th>Suma</th>";
+        bodyInner += "<th>Iloczyn</th>";
+        bodyInner += "<th>Iloraz</th>";
+        bodyInner += "</tr>";
+        for(var i=0 ; i<4 ; i++){
+          bodyInner += "<tr>";
+          var wierszSum = array[i][0];
+          var wierszMultiplication = array[i][0];
+          var wierszDiv = array[i][0];
+          bodyInner += "<td>"+array[i][0]+"</td>";
+          for(var j=1 ; j<4 ; j++){
+            bodyInner += "<td>"+array[i][j]+"</td>";
+            wierszSum += array[i][j];
+            wierszMultiplication *= array[i][j];
+            wierszDiv /= array[i][j];
+          }
+          bodyInner += "<td>"+wierszSum+"</td>";
+          bodyInner += "<td>"+wierszMultiplication+"</td>";
+          bodyInner += "<td>"+wierszDiv+"</td>";
+          bodyInner += "</tr>";
+        }
+
+        var counts_up_down_left_to_right = [];
+        var multi_up_down_left_to_right = [];
+        var div_up_down_left_to_right = [];
+
+
+        for(var i=0 ; i<4 ; i++){
+          var up_down_Sum = array[0][i];
+          var up_down_Multiplication = array[0][i];
+          var up_down_Div = array[0][i];
+          for(var j=1 ; j<4 ; j++){
+              up_down_Sum += array[j][i];
+              up_down_Multiplication *= array[j][i];
+              up_down_Div /= array[j][i];
+          }
+          counts_up_down_left_to_right.push(up_down_Sum);
+          multi_up_down_left_to_right.push(up_down_Multiplication);
+          div_up_down_left_to_right.push(up_down_Div);
+        }
+        console.log(counts_up_down_left_to_right);
+
+        for(var i=0 ; i<3 ; i++){
+          bodyInner += "<tr>";
+          for(var j=0 ; j<4 ;j++){
+            switch (i) {
+              case 0:
+                bodyInner += "<td>"+counts_up_down_left_to_right[j];+"</td>";
+                if(j == 3){
+                  bodyInner += "<th colspan='3'>Suma</td>";
+                }
+                break;
+              case 1:
+                bodyInner += "<td>"+multi_up_down_left_to_right[j]+"</td>";
+                if(j == 3) {
+                    bodyInner += "<th colspan='3'>Iloczyn</td>";
+                }
+                break;
+              case 2:
+                bodyInner += "<td>"+div_up_down_left_to_right[j]+"</td>";
+                if(j == 3) bodyInner += "<th colspan='3'>Iloraz</td>";
+                break;
+              default:
+            }
+          }
+          bodyInner +="</tr>";
+        }
+
+        bodyInner += "</table>";
+
+        body.innerHTML = bodyInner;
+      }
+
+    </script>
+  </body>
+</html>

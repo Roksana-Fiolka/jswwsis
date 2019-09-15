@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      td{
+        border: 1px solid black;
+        width:20px;
+        height: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <script type="text/javascript">
+      var arrayA = [1,2,3,4,5,6,7,8,9,10];
+      var arrayB = [arrayA[0],arrayA[3],arrayA[6],arrayA[8]];
+
+      console.log(arrayB);
+
+
+      var body = document.getElementsByTagName("BODY")[0];
+      var HTMLtext = "<table><tr>";
+
+      i=0;
+      while(arrayB[i] != null){
+          HTMLtext += "<td>"+arrayB[i]+"</td>";
+          i++;
+      }
+
+      HTMLtext += "</tr></table>";
+
+      console.log(body);
+      body.innerHTML = HTMLtext;
+
+    </script>
+  </body>
+</html>
